@@ -37,9 +37,10 @@ jobs:
         with:
           python-version: '3.12'
       - name: Installazione browser
+        if: ${{ inputs.test_notification != true }}
         run: |
           python -m pip install -r requirements.txt
-          python -m playwright install --with-deps chromium
+          python -m playwright install chromium
       - name: Verifica filtro e deduplicazione
         run: python -m unittest -v
       - name: Controllo catalogo e avvisi
